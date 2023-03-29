@@ -1,0 +1,217 @@
+body {
+    background-color: aliceblue;
+
+}
+.poppins{
+    font-family: 'Poppins', sans-serif;
+}
+
+.links{
+    font-size: 20px;
+    margin-left: 15px;
+
+}
+
+.contentDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.blue {
+    color: #3b54a4;
+}
+
+/* Landing Page Styles */
+.landing{
+    text-align: center;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 200px;
+    background-image: url("/static/images/landingBackground.png");
+    background-size: cover;
+}
+
+.landingHeading{
+    margin-top: 100px;
+    font-weight: 400;
+}
+
+.landingSubheader{
+    font-size: 25px;
+}
+
+.getStarted{
+    font-family: 'Poppins', sans-serif;
+    background-color: #3b54a4;
+    color: #FFFF;
+    font-size: 20px;
+    border: white solid 3px;
+    border-radius: 40px;
+    outline: none;
+    height: 55px;
+    width: 200px;
+}
+
+.getStarted:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+/* Landing page Content */
+
+.content {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #3b54a4;
+    color: white;
+    
+}
+
+.content:hover {
+    background-color: #3b54a4;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.cardText {
+    margin-top: 20px;
+}
+
+.cardText li{
+    font-size: 20px;
+    margin-bottom: 30px;
+
+}
+
+.check-list{
+    list-style-image: url("../images/check.png");
+}
+
+/* Identify */
+
+.custom-file-upload {
+    text-align: center;
+    position: static;
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #3b54a4;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    border: 3px solid white;
+    
+}
+
+
+.custom-file-upload:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+.custom-upload-div{
+    text-align: center;
+    width: 100%;
+
+}
+
+
+#identify {
+    text-align: center;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+#image-field{
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+#resultDiv {
+    text-align: center;
+    width: 100%;
+}
+
+#result {
+    margin-top: 10px;
+}
+
+#chartDiv{
+    margin-top: 50px;;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+/* Animations */
+.fade-Up {
+    animation: fadeUp 3s;
+  }
+  
+@keyframes fadeUp {
+0% {
+    opacity: 0;
+    transform: translateY(50px);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+} 
+
+.fade-Down {
+    animation: fadeDown 3s;
+  }
+  
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+.fade-Left {
+    animation: fadeLeft 3s;
+  }
+  
+@keyframes fadeLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+} 
+
+.fade-Right {
+    animation: fadeRight 3s;
+  }
+  
+@keyframes fadeRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

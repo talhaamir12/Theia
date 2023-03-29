@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Theia{% endblock %}
+{% block landing %}
+<div class="landing">
+    <h1 class="display-2 landingHeading fade-Down poppins">Welcome to <span class="blue">Theia</span></h1>
+    <br>
+    <h2 class="text-muted poppins fade-Up landingSubheader">Helping Others See The World, <em>Crystal Clear</em></h2>
+    <br>
+    <a href="/Identify"><button type="button" class="getStarted fade-Up">Get Started</button></a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card content" data-aos="fade-left" data-aos-duration="3000">
+    <div class="card-body">
+        <h1 class="card-title text-center poppins cardTitle">What is Theia?</h5>
+        <div class="cardText">
+            <ul>
+                <li class="card-text poppins">Theia is a tool kit designed for optometrist to identify <br> ocular diseases based off of ophthalmic images</li> 
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block contentTwo %}
+<div class="card content" data-aos="fade-right" data-aos-duration="2000" >
+    <div class="card-body">
+        <h1 class="card-title text-center poppins cardTitle">Why Use Theia?</h5>
+        <div class="cardText">
+            <ul>
+                <li class="card-text poppins">Theia allows optometrists to diagnose many ocular <br> diseases in patients using computer vision</li> 
+                <li class="card-text poppins">This helps to reduce the number of incorrectly diagnosed <br> patients that have Ocular diseases</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block contentThree %}
+<div class="card content" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">
+    <div class="card-body">
+        <h1 class="card-title text-center poppins cardTitle">What Can Theia Diagnose?</h5>
+        <div class="cardText">
+            <ul>
+                <li class="card-text poppins check-list">Diabetes</li> 
+                <li class="card-text poppins check-list">Glaucoma</li>
+                <li class="card-text poppins check-list">Cataract</li>
+                <li class="card-text poppins check-list">Age related Macular Degeneration </li>
+                <li class="card-text poppins check-list">Hypertension</li>
+                <li class="card-text poppins check-list">Pathological Myopia</li>
+                <li class="card-text poppins check-list">And other diseases/abnormalities</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

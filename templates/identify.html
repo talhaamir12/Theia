@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Identify{% endblock %}
+{% block content %}
+<div id="identify">
+    <h1 class="display-2 landingHeading fade-Down poppins">Identify Ocular Diseases...</h1> 
+    <br>
+    <h2 class="text-muted poppins fade-Up landingSubheader">Select An Image to Get Started</h2>
+</div>
+{% endblock %}
+
+{% block contentTwo %}
+<div class="predictSection">
+    <div class="custom-upload-div">
+        <label for="file-field" class="custom-file-upload fade-Left">
+            Custom Upload
+        </label> 
+        <button class="getStarted fade-Right" onclick="run()">Predict</button>
+        <input type="file" id="file-field" onchange="previewImage(event)" class="title" hidden>  
+    </div>
+    <img src="{{ url_for('static', filename='images/upload.png')}}" class="fade-Up" id="image-field" crossorigin="anonymous" width="512px" height="512px" alt="Image Preview" >
+    <div id="chartDiv" data-aos="fade-left" data-aos-duration="2000">
+        <canvas id="myChart" width="500" height="500"></canvas>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+
+let armd;
+let cataract;
+let diabetes;
+let glaucoma;
+let hypertension;
+let myopia;
+let normal;
+let other;
+let finalArr;
+let highestLabel;
+let highestVal;
+let highestValRounded;
+
+async function run() {
+	// Predict Function
+	const model = await tf.loadGraphModel('static/theiamodel/model.json');
+	const image = document.getElementById('image-field');
+    let tensor = tf.browser.fromPixels(image, 3)
+		.resizeNearestNeighbor([224, 224]) // change the image size
+		.expandDims()
+		.toFloat()
+		.reverse(-1);
+	const prediction = model.predict(tensor).data().then((d)=>{
+       
+        armd = d[0] * 100;
+        cataract = d[1] * 100;
+        diabetes = d[2] * 100;
+        glaucoma = d[3] * 100;
+        hypertension = d[4] * 100;
+        myopia = d[5] * 100;
+        normal = d[6] * 100;
+        other = d[7] * 100;
+        finalArr = [armd, cataract, diabetes, glaucoma, hypertension, myopia, normal, other]
+        console.log(finalArr)
+        highestVal = Math.max(armd, cataract, diabetes, glaucoma, hypertension, myopia, normal, other)
+        highestValRounded = Math.ceil(highestVal)
+        if (highestVal === armd){
+            highestLabel = "is diagnosed Macular Degeneration"
+        } else if (highestVal === cataract){
+            highestLabel = "is diagnosed Cataract"
+        } else if (highestVal === diabetes){
+            highestLabel = "is diagnosed Diabetic retinopathy"
+        } else if (highestVal === glaucoma){
+            highestLabel = "is diagnosed Glaucoma"
+        } else if (highestVal === hypertension){
+            highestLabel = "is diagnosed Hypertension"
+        } else if (highestVal === myopia){
+            highestLabel = "is diagnosed Pathological Myopia "
+        } else if (highestVal === normal){
+            highestLabel = "is normal"
+        } else if (highestVal === other){
+            highestLabel = "might be diagnosed with another manifestation"
+        }
+
+        var ctx = document.getElementById('myChart');
+        if(window.bar != undefined) 
+        window.bar.destroy(); 
+        window.bar = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Macular Degeneration', 'Cataract ', 'Diabetic retinopathy', 'Glaucoma', 'Hypertension', 'Pathological Myopia', 'Normal', 'Other diseases'],
+                datasets: [{
+                    label: "Ocular Disease Prediction",
+                    data: finalArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                animation: {
+                    duration: 3000 // general animation time
+                },
+                legend: {
+                    labels: {
+                    boxWidth: 0,
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }]
+                }
+            }
+        });
+    });
+
+
+};
+
+</script>
+{% endblock %}
